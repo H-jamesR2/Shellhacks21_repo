@@ -1,39 +1,112 @@
 {
-"trainingData":[
-    {
-        "tag":"Greeting",
-        "patterns":[
-        "Hi",
-        "Hey",
-        "Hello"
-       
-        
-        ],
-        "responses" : [ 
+    "trainingData":[
+        {
+            "tag":"Greeting",
+            "patterns":[
             "Hi",
             "Hey",
-            "Hello there",
-            "How may I help you today?"
-        ]
-    },
-{
-        "tag": "What times are you open" ,
-        "patterns": [
-            "When are you guys open?",
-            "What times are you open",
-            "Is the store open now"
-        ],
-        "responses" : [ 
-             
-            "Which services "
-
-
-
-        ]
+            "Hello"
+           
+            
+            ],
+            "responses" : [ 
+                "Hi",
+                "Hey",
+                "Hello there",
+                "How may I help you today?"
+            ]
+        },
+    {
+            "tag": "Times" ,
+            "When": [
+                "When are you guys open?",
+                "What times are you open",
+                "Is the store open now",
+                "what are collision hours"
+            ],
+            "Days" : [ 
+                 
+                " Our Store is only open from Mon-Sat 9-8, Sunday  10-7"
+                   
     
+    
+            ],
+        "Brand" : "Cars" ,
+            "Types": [
+                "What type of car do you sell?"
+            ],
+            "Makes" : [ 
+                 
+                "Dodge, Jeep, Chrysler, and Ram" 
+    
+    
+            ],
+            
+        "Phone" : "Calls",
+        "Type " : [
+        
+        "What is the phone number for the store?"
+        
+    ],
+        
+        "Number" : [ 
+                 
+                " This is the store number 425-462-8411. This is the service number 425-900-5010"
+    
+            ],
+        
+    "URL": "Website",
+     "patterns": [
+                "What is the website for Autonation that is in Bellevue, WA?"
+            ],
+            "Info" : [ 
+                 
+                "The main website is this one: https://www.autonationchryslerdodgejeeprambellevue.com. The service website is this one https://www.autonation.com/schedule-store-appointment/chrysler-dodge-jeep-ram-bellevue-wa?sc_lang=en"
+                        
+    
+            ],
+        
+        
+        "How": "Repairs",
+     "Make": [
+                "What do I do if I need a repair"
+            ],
+            "Look" : [ 
+                 
+                " Go to this website and make an appointment https://www.autonation.com/schedule-store-appointment/chrysler-dodge-jeep-ram-bellevue-wa?sc_lang=en or call this number 425-900-5010"
+                        
+    
+            ],
+        "Where": "located",
+     "Find": [
+             "Where is the store?" 
+         
+         
+            ],
+            "Here" : [ 
+                 
+                "120 116th Avenue NE  Bellevue, WA 98004"
+                        
+    
+            ],
+    "Done": "Ready",
+     "Ask": [
+          
+         "When will the car be ready?"
+         
+         
+            ],
+            "Knowledge" : [ 
+                 
+                "At the moment we  don't know"       
+    
+            ]
+    
+    
+        
+        }
+    ]
     }
-]
-}
 
 
 
