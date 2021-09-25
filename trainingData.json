@@ -1,0 +1,39 @@
+{
+"trainingData":[
+    {
+        "tag":"Greeting",
+        "patterns":[
+        "Hi",
+        "Hey",
+        "Hello"
+       
+        
+        ],
+        "responses" : [ 
+            "Hi",
+            "Hey",
+            "Hello there",
+            "How may I help you today?"
+        ]
+    },
+{
+        "tag": "What times are you open" ,
+        "patterns": [
+            "When are you guys open?",
+            "What times are you open",
+            "Is the store open now"
+        ],
+        "responses" : [ 
+             
+            "Which services "
+
+
+
+        ]
+    
+    }
+]
+}
+
+
+
