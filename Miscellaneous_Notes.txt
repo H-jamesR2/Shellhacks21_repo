@@ -7,3 +7,25 @@ Miscellaneous_Notes:
 
 =====
 https://cloud.google.com/deep-learning-vm/docs/pytorch_start_instance
+
+work with Google MAPS API
+====
+storeInfo.json.: [
+"storeId", "name", "address", "storeTimeZone",
+"phoneNumber", "latitude", "longitude", "faxNumber"
+"webAddress", "serviceUrl", "brands", "servicePhoneNumber", 
+"salesHours"
+
+#Use Zipcode to determine nearest location.
+============
+  Example 1:
+	Customer: What are your service hours on Monday?
+	Bot:  We are open from 8AM to 4PM on Monday 
+  Example 2: 
+	Customer: When are you open?
+	Bot: Do you want sales, service, or collision hours?
+	Customer: service
+	Bot: Our service drive is open from Monday-Friday 7AM to 7PM and Saturday 8AM to 5PM
+  Example 3:
+	Customer: Tell me your sales hours for the weekend
+	Bot: Our showroom is open Saturday 9AM to 8PM and on Sunday from 10AM to 7PM
