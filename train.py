@@ -42,6 +42,9 @@ for (pattern_sentence, tag) in xy:
 X_train = np.array(X_train)
 Y_train = np.array(Y_train)
 
+# HYPER-parameters
+batch_size = 8
+
 class ChatDataSet(Dataset):
     def __init__(self):
         self.n_samples = len(X_train)
@@ -54,9 +57,8 @@ class ChatDataSet(Dataset):
     def __len__(self):
         return self.n_samples
     
-# 
-batch_size = 8
-
 dataset = ChatDataSet()
-train_loader = DataLoader(dataset=dataset, batch_size=batch_size,
-    shuffle=True, num_workers=2)
+train_loader = DataLoader(  dataset=dataset, 
+                            batch_size=batch_size,
+                            shuffle=True, 
+                            num_workers=2 )

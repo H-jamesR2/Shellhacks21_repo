@@ -1,4 +1,5 @@
 import nltk
+import numpy as np
 nltk.download('punkt')
 from nltk.stem.porter import PorterStemmer
 stemmer_ = PorterStemmer
@@ -9,7 +10,7 @@ def tokenize(sentence):
 def stem(word):
     return stemmer_.stem(word.lower())
 
-def bag_of_words(tokenized_sentence, all_words):
+def bag_of_words(tokenized_sentence, words):
     # stem each word
     sentence_words = [stem(word) for word in tokenized_sentence]
     # initialize bag w/ 0 for each word..
