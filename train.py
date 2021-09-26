@@ -1,11 +1,14 @@
 import json
 import numpy as np
+import random
 
 from ntlk_utils import tokenize, stem, bag_of_words
 
 import torch
 import torch.nn as nn
 from torch.utils.data import Dataset, DataLoader
+
+from model import NeuralNet
 
 #open a json file then load
 with open('trainingData.json', 'r') as f:
@@ -23,10 +26,12 @@ for intent in intents['intents']:
     for pattern in intent['patterns']:
         w = tokenize(pattern)
         all_words.extend(w)
-        xy.append(w, tag)
+        xy.append((w, tag))
 
-ignore_words = ['?','!','.',',']
+# stem and lower each word
+ignore_words = ['?', '.', '!']
 all_words = [stem(w) for w in all_words if w not in ignore_words]
+# remove duplicates and sort
 all_words = sorted(set(all_words))
 tags = sorted(set(tags))
 
@@ -44,6 +49,14 @@ Y_train = np.array(Y_train)
 
 # HYPER-parameters
 batch_size = 8
+hidden_size = 8
+output_size = len(tags)
+input_size = len(X_train[0])
+num_epochs = 1000
+learning_rate = 0.001
+#print(input_size, len(all_words))
+#print(output_size, tags)
+
 
 class ChatDataSet(Dataset):
     def __init__(self):
@@ -53,7 +66,7 @@ class ChatDataSet(Dataset):
 
     #dataset(idx)
     def __getitem__(self, index):
-        return self.x_data[i], self.y_data[i]
+        return self.x_data[index], self.y_data[index]
     def __len__(self):
         return self.n_samples
     
@@ -61,4 +74,50 @@ dataset = ChatDataSet()
 train_loader = DataLoader(  dataset=dataset, 
                             batch_size=batch_size,
                             shuffle=True, 
-                            num_workers=2 )
+                            num_workers=0 )
+
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+model = NeuralNet(input_size, hidden_size, output_size).to(device)
+
+# Loss + Optimizer
+criteria = nn.CrossEntropyLoss()
+optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
+
+
+#-------#
+# Train the model
+for epoch in range(num_epochs):
+    for (words, labels) in train_loader:
+        words = words.to(device)
+        labels = labels.to(dtype=torch.long).to(device)
+
+        # Forward pass
+        outputs = model(words)
+        # if y would be one-hot, we must apply
+        # labels = torch.max(labels, 1)[1]
+        loss = criteria(outputs, labels)
+
+        # Backward and optimize
+        optimizer.zero_grad()
+        loss.backward()
+        optimizer.step()
+
+    if (epoch+1) % 100 == 0:
+        print(f'Epoch [{epoch+1}/{num_epochs}], Loss: {loss.item():.4f}')
+
+
+print(f'final loss: {loss.item():.4f}')
+
+data = {
+    "model_state": model.state_dict(),
+    "input_size": input_size,
+    "hidden_size": hidden_size,
+    "output_size": output_size,
+    "all_words": all_words,
+    "tags": tags
+}
+
+FILE = "data.pth"
+torch.save(data, FILE)
+
+print(f'training complete. file saved to {FILE}')
