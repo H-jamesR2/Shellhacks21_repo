@@ -1,7 +1,7 @@
-### Shellhacks21_repo
+# Shellhacks21_repo
 Submission: "AutoBot"
 
-##Inspiration
+## Inspiration
 
 Our inspiration for building this chatbot was being able to work with interesting, practical technologies and a chatbot that is front-facing and will be likely to interact with customers with the advent of the internet and automation piqued our interests.
 
